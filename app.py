@@ -12,20 +12,23 @@ def main():
     print("Welcome to the BMI Calculator!")
 
     if len(sys.argv) != 3:
-        print("Usage: python3 app.py <weight> <height>")
+        print("Usage: python3 app.py <weight> <height_in_cm>")
         sys.exit(1)
 
     try:
-        # Get weight and height from command-line arguments
+        # Get weight from command-line arguments
         weight = float(sys.argv[1])
-        height = float(sys.argv[2])
 
-        if weight <= 0 or height <= 0:
+        # Get height in cm and convert to meters
+        height_cm = float(sys.argv[2])
+        height_m = height_cm / 100  # Convert height from cm to meters
+
+        if weight <= 0 or height_cm <= 0:
             print("Weight and height must be positive values.")
             return
 
         # Calculate BMI
-        bmi = calculate_bmi(weight, height)
+        bmi = calculate_bmi(weight, height_m)
 
         # Determine BMI category
         if bmi < 18.5:
