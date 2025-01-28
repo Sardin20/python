@@ -1,3 +1,5 @@
+import sys
+
 def calculate_bmi(weight, height):
     """
     Calculate BMI using the formula:
@@ -9,10 +11,14 @@ def calculate_bmi(weight, height):
 def main():
     print("Welcome to the BMI Calculator!")
 
+    if len(sys.argv) != 3:
+        print("Usage: python3 app.py <weight> <height>")
+        sys.exit(1)
+
     try:
-        # Get user input
-        weight = float(input("Enter your weight in kilograms: "))
-        height = float(input("Enter your height in meters: "))
+        # Get weight and height from command-line arguments
+        weight = float(sys.argv[1])
+        height = float(sys.argv[2])
 
         if weight <= 0 or height <= 0:
             print("Weight and height must be positive values.")
